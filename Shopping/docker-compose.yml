@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  shopping.api:
+    container_name: shoppingapi  
+    image: ${DOCKER_REGISTRY-}shoppingapi
+    build:
+      context: .
+      dockerfile: Shopping.API/Dockerfile
+    
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseSettings__ConnectionString=Server=shoppingdb;Database=ProductDb;User Id=sa;Password=password@12345#;TrustServerCertificate=true;
+    depends_on:
+      - shopping.db
+    ports:
+      - "8000:80"
+
+  shopping.client:
+    container_name: shoppingclient  
+    image: ${DOCKER_REGISTRY-}shoppingclient
+    build:
+      context: .
+      dockerfile: Shopping.Client/Dockerfile
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development 
+      - "ShoppingAPIUrl=http://shoppingapi"
+    depends_on:
+      - shopping.db
+      - shopping.api
+    ports:
+      - "8001:80"
+
+  shopping.db:
+    container_name: shoppingdb
+    restart: always
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=password@12345#
+    ports:
+      - 9009:1433
