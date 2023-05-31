@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-deployment
+  labels:
+    app: mssqldb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssqldb
+  template:
+    metadata:
+      labels:
+        app: mssqldb
+    spec:
+      containers:
+        - name: mssqldb
+          image: mcr.microsoft.com/mssql/server
+          ports:
+          - containerPort: 1433
+          env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: SA_PASSWORD
+           #value: "password@12345#"
+            valueFrom:
+              secretKeyRef:
+                name: mssql-secret
+                key: mssql-sa-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-service
+spec:
+  selector:
+    app: mssqldb
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+  type: LoadBalancer #When need to ckeck with open url

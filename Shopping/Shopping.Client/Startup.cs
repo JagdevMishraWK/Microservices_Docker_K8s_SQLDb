@@ -4,9 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shopping.Client
 {
@@ -25,7 +22,7 @@ namespace Shopping.Client
             services.AddHttpClient("ShoppingAPIClient", client =>
             {
                 // Shopping.API url     
-                //client.BaseAddress = new Uri("http://localhost:5000/"); 
+                // client.BaseAddress = new Uri("http://localhost:5000/"); 
                 client.BaseAddress = new Uri(Configuration["ShoppingAPIUrl"]);
             });
 
