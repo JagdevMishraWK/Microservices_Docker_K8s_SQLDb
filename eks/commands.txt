@@ -4,10 +4,14 @@
    aws ecr --region eu-west-1 | docker login -u AWS -p <Above encrytped password> <ECR-URI>
    docker tag shoppingapi:latest 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingapi:latest
    docker push 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingapi:latest
+
+   aws ecr --region eu-west-1 | docker login -u AWS -p <Above encrytped password> <ECR-URI>
+   docker tag shoppingapi:latest 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingclient:latest
+   docker push 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingclient:latest
   
-   kubectl apply -f mongo-secret.yaml
-   kubectl apply -f mongo-configmap.yaml
-   kubectl apply -f mongo.yaml
+   kubectl apply -f mssql-secret.yaml
+   kubectl apply -f mssql-configmap.yaml
+   kubectl apply -f mssql.yaml
    kubectl apply -f shoppingapi-configmap.yaml
    kubectl apply -f shoppingapi.yaml
    kubectl apply -f shoppingclient.yaml

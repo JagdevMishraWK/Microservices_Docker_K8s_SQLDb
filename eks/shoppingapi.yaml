@@ -24,10 +24,11 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
             - name: DatabaseSettings__ConnectionString
-              valueFrom:
-                  configMapKeyRef:
-                    name: mssql-configmap
-                    key: connection_string
+              value: Server=shoppingdb;Database=ProductDb;User Id=sa;Password=password@12345#;
+              #valueFrom:
+              #    configMapKeyRef:
+              #      name: mssql-configmap
+              #      key: connection_string
           resources:
             requests:
               memory: "64Mi"
@@ -48,3 +49,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
+  type: LoadBalancer
