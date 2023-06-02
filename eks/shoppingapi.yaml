@@ -25,7 +25,7 @@ spec:
               value: Development
             - name: DatabaseSettings__ConnectionString
               value: Server=a62640b533f7946949e8a0f546c5af64-802939722.eu-west-1.elb.amazonaws.com ,1433;Database=ProductDb;User Id=sa;Password=password@12345#;TrustServerCertificate=true;
-              #value: Server=shoppingdb;Database=ProductDb;User Id=sa;Password=password@12345#;TrustServerCertificate=true;
+              #value: Server=shoppingdb,1433;Database=ProductDb;User Id=sa;Password=password@12345#;TrustServerCertificate=true;
               #valueFrom:
               #    configMapKeyRef:
               #      name: mssql-configmap
