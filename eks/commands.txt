@@ -5,6 +5,7 @@
    docker tag shoppingapi:latest 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingapi:latest
    docker push 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingapi:latest
 
+   aws ecr get-login-password --region eu-west-1
    aws ecr --region eu-west-1 | docker login -u AWS -p <Above encrytped password> <ECR-URI>
    docker tag shoppingapi:latest 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingclient:latest
    docker push 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingclient:latest

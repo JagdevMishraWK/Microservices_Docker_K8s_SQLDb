@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shoppingapi
-          image: 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingapi
+          image: 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingapi@sha256:f434d7e2c0a03f9e295bd17a82d1a8f93997860882b8a8a1d907e2dfa5716c2f
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 80
@@ -24,7 +24,8 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
             - name: DatabaseSettings__ConnectionString
-              value: Server=shoppingdb;Database=ProductDb;User Id=sa;Password=password@12345#;
+              value: Server=a62640b533f7946949e8a0f546c5af64-802939722.eu-west-1.elb.amazonaws.com ,1433;Database=ProductDb;User Id=sa;Password=password@12345#;TrustServerCertificate=true;
+              #value: Server=shoppingdb;Database=ProductDb;User Id=sa;Password=password@12345#;TrustServerCertificate=true;
               #valueFrom:
               #    configMapKeyRef:
               #      name: mssql-configmap

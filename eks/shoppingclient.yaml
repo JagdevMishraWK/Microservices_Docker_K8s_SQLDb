@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shoppingclient
-          image: 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingclient
+          image: 943725333913.dkr.ecr.eu-west-1.amazonaws.com/shoppingclient@sha256:f434d7e2c0a03f9e295bd17a82d1a8f93997860882b8a8a1d907e2dfa5716c2f
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 80
